@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Building Mask R-CNN Models &mdash; CoreBreakout 0.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Layout Parameters" href="layout_parameters.html" />
+    <link rel="prev" title="Creating Datasets" href="creating_datasets.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> CoreBreakout
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="creating_datasets.html">Creating <code class="docutils literal notranslate"><span class="pre">Datasets</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#image-labeling-guidelines">Image Labeling Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#corebreakout-datasets-polygondataset"><code class="docutils literal notranslate"><span class="pre">corebreakout.datasets.PolygonDataset</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="creating_datasets.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#subclassing-mrcnn-utils-dataset">Subclassing <code class="docutils literal notranslate"><span class="pre">mrcnn.utils.Dataset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Building Mask R-CNN Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mrcnn-model-configuration"><code class="docutils literal notranslate"><span class="pre">mrcnn</span></code> Model Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-training">Model Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-selection">Model Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-a-model">Using a Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="layout_parameters.html">Layout Parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="layout_parameters.html#order-and-orientation"><code class="docutils literal notranslate"><span class="pre">order</span></code> and <code class="docutils literal notranslate"><span class="pre">orientation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout_parameters.html#col-height"><code class="docutils literal notranslate"><span class="pre">col_height</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout_parameters.html#col-class"><code class="docutils literal notranslate"><span class="pre">col_class</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout_parameters.html#endpts"><code class="docutils literal notranslate"><span class="pre">endpts</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scripts_reference.html">Scripts Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scripts_reference.html#train-mrcnn-model-py"><code class="docutils literal notranslate"><span class="pre">train_mrcnn_model.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts_reference.html#get-ocr-depths-py"><code class="docutils literal notranslate"><span class="pre">get_ocr_depths.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts_reference.html#process-directory-py"><code class="docutils literal notranslate"><span class="pre">process_directory.py</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CoreBreakout</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Building Mask R-CNN Models</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/model_building.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="building-mask-r-cnn-models">
+<span id="model-building"></span><h1>Building Mask R-CNN Models<a class="headerlink" href="#building-mask-r-cnn-models" title="Permalink to this headline">¶</a></h1>
+<p>For best results, most users will want to train models on some of
+their own data. See <a class="reference internal" href="creating_datasets.html#creating-datasets"><span class="std std-ref">Creating Datasets</span></a> for guidelines.</p>
+<p>We may release a more general pretrained model in the future, pending demand and the availability of open source datasets. Feel free to contact us if you would like to contribute your data for that purpose.</p>
+<p>The rough outline of model construction and training looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mrcnn.model</span> <span class="kn">as</span> <span class="nn">modellib</span>
+<span class="kn">from</span> <span class="nn">corebreakout</span> <span class="kn">import</span> <span class="n">defaults</span><span class="p">,</span> <span class="n">datasets</span>
+
+<span class="n">model_config</span> <span class="o">=</span> <span class="n">defaults</span><span class="o">.</span><span class="n">DefaultConfig</span><span class="p">()</span>
+
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">PolygonDataset</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">PolygonDataset</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">modellib</span><span class="o">.</span><span class="n">MaskRCNN</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">test_dataset</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For the finer details see <a class="reference external" href="https://github.com/rgmyr/corebreakout/blob/master/scripts/train_mrcnn_model.py">scripts/train_mrcnn_model.py</a></p>
+<div class="section" id="mrcnn-model-configuration">
+<h2><code class="docutils literal notranslate"><span class="pre">mrcnn</span></code> Model Configuration<a class="headerlink" href="#mrcnn-model-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Models are created with a subclass of <code class="docutils literal notranslate"><span class="pre">mrcnn.config.Config</span></code>. See
+<code class="docutils literal notranslate"><span class="pre">corebreakout.defaults.DefaultConfig</span></code> for our latest model
+configuration.</p>
+<p>To see all available configuration parameters, see
+<a class="reference external" href="https://github.com/matterport/Mask_RCNN/blob/3deaec5d902d16e1daf56b62d5971d428dc920bc/mrcnn/config.py">mrcnn/config.py</a></p>
+<p>The obvious parameters that a user might want to change include:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NAME</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RPN_ANCHOR_RATIOS</span></code> : defaults are set up for horizontal columns. Something like <code class="docutils literal notranslate"><span class="pre">[1.0,</span> <span class="pre">3.0,</span> <span class="pre">7.0]</span></code> would make more sense for vertical columns.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STEPS_PER_EPOCH</span></code>, <code class="docutils literal notranslate"><span class="pre">VALIDATION_STEPS</span></code> : batches per training epoch and validation step. Does not necessarily need to match dataset sizes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IMAGES_PER_GPU</span></code> : you can try to increase if you have a large GPU.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPU_COUNT</span></code> : you can increase if you multiple GPUs.</p></li>
+</ul>
+</div></blockquote>
+<p>You can either modify <code class="docutils literal notranslate"><span class="pre">DefaultConfig</span></code> directly, or instantiate your own <code class="docutils literal notranslate"><span class="pre">Config</span></code> subclass.</p>
+</div>
+<div class="section" id="model-training">
+<h2>Model Training<a class="headerlink" href="#model-training" title="Permalink to this headline">¶</a></h2>
+<p>The simplest way to train a model is by running
+<a class="reference external" href="https://github.com/rgmyr/corebreakout/blob/master/scripts/train_mrcnn_model.py">scripts/train_mrcnn_model.py</a>.
+This script loads pretrained <code class="docutils literal notranslate"><span class="pre">COCO</span></code> weights, and executes a three step
+training + tuning run.</p>
+<p>It also serves as a demonstration of <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> collection, and
+instantiating and training a <code class="docutils literal notranslate"><span class="pre">mrcnn.modellib.MaskRCNN</span></code>.</p>
+<p>While training, <code class="docutils literal notranslate"><span class="pre">mrcnn</span></code> logs <code class="docutils literal notranslate"><span class="pre">tensorboard</span></code> files to the specified
+<code class="docutils literal notranslate"><span class="pre">model_dir</span></code>. You can view the files by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tensorboard --logdir &lt;model_dir&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="model-selection">
+<h2>Model Selection<a class="headerlink" href="#model-selection" title="Permalink to this headline">¶</a></h2>
+<p>We recommend viewing the <code class="docutils literal notranslate"><span class="pre">tensorboard</span></code> files (and particularly the
+<code class="docutils literal notranslate"><span class="pre">val_loss</span></code> scalar) to select candidate models.</p>
+<p><a class="reference external" href="https://github.com/rgmyr/corebreakout/blob/master/notebooks/select_model.ipynb">notebooks/select_model.ipynb</a>
+provides a template for viewing the output of candidate models on the
+test dataset.</p>
+<p><strong>Note</strong>: <code class="docutils literal notranslate"><span class="pre">mrcnn</span></code> saves Checkpoints each epoch starting at <code class="docutils literal notranslate"><span class="pre">0001</span></code>,
+while <code class="docutils literal notranslate"><span class="pre">tensorboard</span></code> logs epochs starting from <code class="docutils literal notranslate"><span class="pre">0</span></code>. So, if epoch
+<code class="docutils literal notranslate"><span class="pre">X</span></code> looks good on <code class="docutils literal notranslate"><span class="pre">tensorboard</span></code>, you will want to reference epoch
+<code class="docutils literal notranslate"><span class="pre">X+1</span></code> in your list of candidates to load the corresponding weights.</p>
+</div>
+<div class="section" id="using-a-model">
+<h2>Using a Model<a class="headerlink" href="#using-a-model" title="Permalink to this headline">¶</a></h2>
+<p>Once you have trained and selected a new model, you may want to change
+the <code class="docutils literal notranslate"><span class="pre">*PATH</span></code> variables in <code class="docutils literal notranslate"><span class="pre">corebreakout/defaults.py</span></code> to point to the location of the
+new model weights (these paths are what get referenced by default in
+<code class="docutils literal notranslate"><span class="pre">scripts/process_directory.py</span></code>, etc.).</p>
+<p>Alternatively, you can always pass whatever <code class="docutils literal notranslate"><span class="pre">model_dir</span></code> and <code class="docutils literal notranslate"><span class="pre">weights_path</span></code> (and
+<code class="docutils literal notranslate"><span class="pre">model_config</span></code> instance) you like when constructing a <code class="docutils literal notranslate"><span class="pre">CoreSegmenter</span></code>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="layout_parameters.html" class="btn btn-neutral float-right" title="Layout Parameters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="creating_datasets.html" class="btn btn-neutral float-left" title="Creating Datasets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Ross Meyer, Thomas Martin, Zane Jobe
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

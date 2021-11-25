@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Layout Parameters &mdash; CoreBreakout 0.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Scripts Reference" href="scripts_reference.html" />
+    <link rel="prev" title="Building Mask R-CNN Models" href="model_building.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> CoreBreakout
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="creating_datasets.html">Creating <code class="docutils literal notranslate"><span class="pre">Datasets</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#image-labeling-guidelines">Image Labeling Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#corebreakout-datasets-polygondataset"><code class="docutils literal notranslate"><span class="pre">corebreakout.datasets.PolygonDataset</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="creating_datasets.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#subclassing-mrcnn-utils-dataset">Subclassing <code class="docutils literal notranslate"><span class="pre">mrcnn.utils.Dataset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model_building.html">Building Mask R-CNN Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="model_building.html#mrcnn-model-configuration"><code class="docutils literal notranslate"><span class="pre">mrcnn</span></code> Model Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_building.html#model-training">Model Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_building.html#model-selection">Model Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_building.html#using-a-model">Using a Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Layout Parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#order-and-orientation"><code class="docutils literal notranslate"><span class="pre">order</span></code> and <code class="docutils literal notranslate"><span class="pre">orientation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#col-height"><code class="docutils literal notranslate"><span class="pre">col_height</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#col-class"><code class="docutils literal notranslate"><span class="pre">col_class</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#endpts"><code class="docutils literal notranslate"><span class="pre">endpts</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scripts_reference.html">Scripts Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scripts_reference.html#train-mrcnn-model-py"><code class="docutils literal notranslate"><span class="pre">train_mrcnn_model.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts_reference.html#get-ocr-depths-py"><code class="docutils literal notranslate"><span class="pre">get_ocr_depths.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts_reference.html#process-directory-py"><code class="docutils literal notranslate"><span class="pre">process_directory.py</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CoreBreakout</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Layout Parameters</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/layout_parameters.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="layout-parameters">
+<span id="id1"></span><h1>Layout Parameters<a class="headerlink" href="#layout-parameters" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">corebreakout</span></code> allows for processing core images with different
+layouts, and provides several different methods for finding and
+cropping the bounding boxes of individual columns within an image.</p>
+<p>Layout parameters are used within the <code class="docutils literal notranslate"><span class="pre">CoreSegmenter.segment()</span></code>
+method.</p>
+<p>Any and all default parameters can be overridden and updated in the
+<code class="docutils literal notranslate"><span class="pre">CoreSegmenter</span></code> constructor, or in any single call to the
+<code class="docutils literal notranslate"><span class="pre">segment()</span></code> method. In either case, pass any new parameters in a dict
+as the <code class="docutils literal notranslate"><span class="pre">layout_params</span></code> keyword argument.</p>
+<p>The default parameters reflect the characteristics of the BGS dataset on
+which the example model is trained:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># corebreakout/defaults.py</span>
+
+<span class="n">LAYOUT_PARAMS</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;order&#39;</span> <span class="p">:</span> <span class="s1">&#39;t2b&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;orientation&#39;</span> <span class="p">:</span> <span class="s1">&#39;l2r&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;col_height&#39;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+  <span class="s1">&#39;col_class&#39;</span> <span class="p">:</span> <span class="s1">&#39;col&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;endpts&#39;</span> <span class="p">:</span> <span class="s1">&#39;tray&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>DEVELOPMENT NOTE:</strong> The only allowed values for <code class="docutils literal notranslate"><span class="pre">order</span></code> and
+<code class="docutils literal notranslate"><span class="pre">orientation</span></code> are <code class="docutils literal notranslate"><span class="pre">'t2b'</span></code> and <code class="docutils literal notranslate"><span class="pre">'l2r'</span></code>. This covers all
+conventional core image layouts that we are aware of, but we would
+consider adding <code class="docutils literal notranslate"><span class="pre">'b2t'</span></code> and <code class="docutils literal notranslate"><span class="pre">'r2l'</span></code> if provided with use-cases. If
+you have one, please open an issue (or submit a pull request :-).</p>
+<div class="section" id="order-and-orientation">
+<h2><code class="docutils literal notranslate"><span class="pre">order</span></code> and <code class="docutils literal notranslate"><span class="pre">orientation</span></code><a class="headerlink" href="#order-and-orientation" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">'order'</span></code> parameter specifies the depth order by which to sort the
+set of columns detected in an image:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'t2b'</span></code> implies that columns are laid out horizontally, with the uppermost column coming first in order of depth.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'l2r'</span></code> implies that columns are laid out vertically, with the leftmost column coming first in order of depth.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">'orientation'</span></code> parameter specifies the depth orientation of
+columns. This should be the converse of <code class="docutils literal notranslate"><span class="pre">'order'</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'t2b'</span></code> implies that the top of a (vertical) column is toward the top of the image.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'l2r'</span></code> implies that the top of a (horizontal) column is toward the left side of the image.</p></li>
+</ul>
+<p>Since it is required that <code class="docutils literal notranslate"><span class="pre">order</span></code> be one of these options and
+<code class="docutils literal notranslate"><span class="pre">orientation</span></code> be the other, requiring both <em>is</em> redundant. However,
+making both of them explicit improves code readability, and will make it
+easier to add other options should we choose to do so in future
+releases.</p>
+</div>
+<div class="section" id="col-height">
+<h2><code class="docutils literal notranslate"><span class="pre">col_height</span></code><a class="headerlink" href="#col-height" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">'col_height'</span></code> parameter specifies the height in depth units
+(usually meters or feet) of individual (and complete) columns.</p>
+<p>This value is used in conjunction with the <code class="docutils literal notranslate"><span class="pre">depth_range</span></code> positional
+argument to find the number of expected columns in an image when calling
+<code class="docutils literal notranslate"><span class="pre">CoreSegmenter.segment(img,</span> <span class="pre">depth_range,</span> <span class="pre">**kwargs)</span></code>.</p>
+</div>
+<div class="section" id="col-class">
+<h2><code class="docutils literal notranslate"><span class="pre">col_class</span></code><a class="headerlink" href="#col-class" title="Permalink to this headline">¶</a></h2>
+<p>The name of the class representing core sample columns in the M-RCNN
+model used by <code class="docutils literal notranslate"><span class="pre">CoreSegmenter</span></code> instance.</p>
+</div>
+<div class="section" id="endpts">
+<h2><code class="docutils literal notranslate"><span class="pre">endpts</span></code><a class="headerlink" href="#endpts" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">'endpts'</span></code> parameter determines the method for making sure that
+before cropping, the <code class="docutils literal notranslate"><span class="pre">top</span></code> and <code class="docutils literal notranslate"><span class="pre">base</span></code> of partial columns are
+extended to locations that are approximately <code class="docutils literal notranslate"><span class="pre">'col_height'</span></code> apart.
+Different options may work better or worse depending on how clean the
+samples are and how consistent the layout is.</p>
+<p>Predicted masks tend to be subsets of the ‘true’ masks, so <strong>short
+columns are extended</strong>, but <strong>longer columns are NOT shortened</strong>. You
+can see this in the example images below, where the computed minimal
+endpoint locations are shown as solid yellow lines, and the resulting
+column bounding boxes are shown as green dashed lines.</p>
+<p>Allowed values of <code class="docutils literal notranslate"><span class="pre">'endpts'</span></code> include:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>The name of a class (<em>e.g.</em>, <code class="docutils literal notranslate"><span class="pre">'tray'</span></code>)</dt><dd><ul>
+<li><p>Results in columns being extended to the <code class="docutils literal notranslate"><span class="pre">top</span></code> and <code class="docutils literal notranslate"><span class="pre">base</span></code> of the strongest detection of this class</p></li>
+<li><p>Must be found in the <code class="docutils literal notranslate"><span class="pre">class_names</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">CoreSegmenter</span></code> instance</p></li>
+<li><p>Typical choices would be empty trays, or the measuring sticks commonly placed next to boxes of core</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p><img alt="image0" src="_images/endpts_tray.png" /></p>
+<ul class="simple">
+<li><p>One of the keywords <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> or <code class="docutils literal notranslate"><span class="pre">'auto_all'</span></code></p>
+<ul>
+<li><p>Results in columns being extended to the min/max coordinates of a
+set of detected objects</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'auto'</span></code> will use only objects of <code class="docutils literal notranslate"><span class="pre">'col_class'</span></code> as the
+relevant set (<em>e.g.</em>, all <code class="docutils literal notranslate"><span class="pre">'col'</span></code> detections – first example
+below)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'auto_all'</span></code> will use all objects in the image (<em>e.g.</em>, all
+<code class="docutils literal notranslate"><span class="pre">'col'</span></code> <strong>and</strong> <code class="docutils literal notranslate"><span class="pre">'tray'</span></code> detections – second example below)</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image1" src="_images/endpts_auto.png" /></p>
+<p><img alt="image2" src="_images/endpts_auto_all.png" /></p>
+<ul class="simple">
+<li><p>A 2-tuple of explicit integer endpoint coordinates (<em>e.g.</em>,
+<code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">6900)</span></code>)</p>
+<ul>
+<li><p>Results in columns being extended to at least these min/max
+coordinates</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image3" src="_images/endpts_explicit.png" /></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="scripts_reference.html" class="btn btn-neutral float-right" title="Scripts Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="model_building.html" class="btn btn-neutral float-left" title="Building Mask R-CNN Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Ross Meyer, Thomas Martin, Zane Jobe
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

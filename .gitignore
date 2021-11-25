@@ -1,0 +1,11 @@
+*ipynb_checkpoints*
+*__pycache__*
+*pytest_cache*
+
+# exclude assets
+assets/
+
+*.h5
+
+# exclude env
+env/

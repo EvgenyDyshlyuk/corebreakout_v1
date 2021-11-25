@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Welcome to CoreBreakout’s documentation! &mdash; CoreBreakout 0.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Creating Datasets" href="creating_datasets.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> CoreBreakout
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Usage Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="creating_datasets.html">Creating <code class="docutils literal notranslate"><span class="pre">Datasets</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#using-labelme">Using <code class="docutils literal notranslate"><span class="pre">labelme</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#inspect-our-annotations">Inspect Our Annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#how-to-name-things">How to Name Things</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#removing-imagedata">Removing <code class="docutils literal notranslate"><span class="pre">imageData</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#summary-of-guidelines">Summary of Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#corebreakout-datasets-polygondataset"><code class="docutils literal notranslate"><span class="pre">corebreakout.datasets.PolygonDataset</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="creating_datasets.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#subclassing-mrcnn-utils-dataset">Subclassing <code class="docutils literal notranslate"><span class="pre">mrcnn.utils.Dataset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model_building.html">Building Mask R-CNN Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="model_building.html#mrcnn-model-configuration"><code class="docutils literal notranslate"><span class="pre">mrcnn</span></code> Model Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_building.html#model-training">Model Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_building.html#model-selection">Model Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_building.html#using-a-model">Using a Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="layout_parameters.html">Layout Parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="layout_parameters.html#order-and-orientation"><code class="docutils literal notranslate"><span class="pre">order</span></code> and <code class="docutils literal notranslate"><span class="pre">orientation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout_parameters.html#col-height"><code class="docutils literal notranslate"><span class="pre">col_height</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout_parameters.html#col-class"><code class="docutils literal notranslate"><span class="pre">col_class</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout_parameters.html#endpts"><code class="docutils literal notranslate"><span class="pre">endpts</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scripts_reference.html">Scripts Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scripts_reference.html#train-mrcnn-model-py"><code class="docutils literal notranslate"><span class="pre">train_mrcnn_model.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts_reference.html#get-ocr-depths-py"><code class="docutils literal notranslate"><span class="pre">get_ocr_depths.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts_reference.html#process-directory-py"><code class="docutils literal notranslate"><span class="pre">process_directory.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts_reference.html#prune-imagedata-py"><code class="docutils literal notranslate"><span class="pre">prune_imageData.py</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">CoreBreakout</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Welcome to CoreBreakout’s documentation!</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="welcome-to-corebreakout-s-documentation">
+<h1>Welcome to CoreBreakout’s documentation!<a class="headerlink" href="#welcome-to-corebreakout-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Project Repository: <a class="reference external" href="https://github.com/rgmyr/corebreakout">rgmyr/corebreakout</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">mrcnn</span></code> Repository: <a class="reference external" href="https://github.com/matterport/Mask_RCNN">matterport/Mask_RCNN</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">corebreakout</span></code> provides two main functionalities: <strong>(1)</strong> a deep learning workflow for transforming raw images of geological core sample boxes into depth-registered datasets, which is facilitated by the <code class="docutils literal notranslate"><span class="pre">CoreSegmenter</span></code> API, and <strong>(2)</strong> a <code class="docutils literal notranslate"><span class="pre">CoreColumn</span></code> data structure for storing and manipulating depth-registered image data.</p>
+<p><img alt="workflowfigure" src="_images/JOSS_figure_workflow.png" /></p>
+<p>This documentation covers usage of <code class="docutils literal notranslate"><span class="pre">corebreakout</span></code>. To dig into the finer details of the Mask R-CNN model implementation, please refer to <code class="docutils literal notranslate"><span class="pre">mrcnn</span></code>’s documentation.</p>
+</div>
+<div class="section" id="provided-data">
+<h1>Provided Data<a class="headerlink" href="#provided-data" title="Permalink to this headline">¶</a></h1>
+<p>We provide labeled images from the British Geological Survey’s North Sea collection, as well as a saved Mask R-CNN model trained on this data, and a pretrained COCO model from which to start new training runs.</p>
+<p>To use the data or models, download the <code class="docutils literal notranslate"><span class="pre">assets.zip</span></code> folder from the <a class="reference external" href="https://github.com/rgmyr/corebreakout/releases">Releases Page</a>. Unzip it in the root directory of the project, or modify the paths in <a class="reference external" href="https://github.com/rgmyr/corebreakout/blob/master/corebreakout/defaults.py">defaults.py</a> to point to the location.</p>
+<p>JSON annotations in this data currently contain a superfluous field called <code class="docutils literal notranslate"><span class="pre">imageData</span></code> which takes up most of the memory for these files. You can delete this field and reduce the file sizes with <code class="docutils literal notranslate"><span class="pre">scripts/prune_imageData.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python scripts/prune_imageData.py assets/
+</pre></div>
+</div>
+<p>If you want to use your own data, then label some images for Mask R-CNN training, following the guidelines in <a class="reference internal" href="creating_datasets.html#creating-datasets"><span class="std std-ref">Creating Datasets</span></a>. We recommend starting with 20-30 images.</p>
+</div>
+<div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="image-processing-workflow">
+<h2>Image Processing Workflow<a class="headerlink" href="#image-processing-workflow" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>If you’re looking to use your own data, you will probably need to label some of your images for best results. Follow the guidelines in <a class="reference internal" href="creating_datasets.html#creating-datasets"><span class="std std-ref">Creating Datasets</span></a>.</p></li>
+<li><p>Train a Mask R-CNN model using your labeled data. Model configuration, training, and selection are explained in <a class="reference internal" href="model_building.html#model-building"><span class="std std-ref">Building Mask R-CNN Models</span></a>.</p></li>
+<li><p>Use the trained model to process directories of unlabeled images and save the results as a <code class="docutils literal notranslate"><span class="pre">CoreColumn</span></code>. We provide <a class="reference external" href="https://github.com/rgmyr/corebreakout/blob/master/scripts/process_directory.py">scripts/process_directory.py</a> to facilitate this step. It requires saved model weights, and a csv file listing the top and bottom depths for each image in the directory. To make creating these csv’s easier, we provide <a class="reference external" href="https://github.com/rgmyr/corebreakout/blob/master/scripts/get_ocr_depths.py">scripts/get_ocr_depths.py</a>.</p></li>
+</ol>
+</div>
+<div class="section" id="the-coresegmenter-class">
+<h2>The <code class="docutils literal notranslate"><span class="pre">CoreSegmenter</span></code> Class<a class="headerlink" href="#the-coresegmenter-class" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/rgmyr/corebreakout/blob/master/scripts/process_directory.py">scripts/process_directory.py</a> uses the <code class="docutils literal notranslate"><span class="pre">corebreakout.CoreSegmenter</span></code> API to handle converting images to <code class="docutils literal notranslate"><span class="pre">CoreColumns</span></code>, and you may also use this class directly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">segmenter</span> <span class="o">=</span> <span class="n">corebreakout</span><span class="o">.</span><span class="n">CoreSegmenter</span><span class="p">(</span>
+      <span class="n">model_dir</span><span class="p">,</span>
+      <span class="n">weights_path</span><span class="p">,</span>
+      <span class="n">model_config</span>  <span class="o">=</span> <span class="n">corebreakout</span><span class="o">.</span><span class="n">defaults</span><span class="o">.</span><span class="n">DefaultConfig</span><span class="p">,</span>
+      <span class="n">class_names</span>   <span class="o">=</span> <span class="n">corebreakout</span><span class="o">.</span><span class="n">defaults</span><span class="o">.</span><span class="n">CLASSES</span><span class="p">,</span>
+      <span class="n">layout_params</span> <span class="o">=</span> <span class="n">corebreakout</span><span class="o">.</span><span class="n">defaults</span><span class="o">.</span><span class="n">LAYOUT_PARAMS</span>
+<span class="p">)</span>
+
+<span class="c1"># `img` can be an array or a path to an image</span>
+<span class="n">column</span> <span class="o">=</span> <span class="n">segmenter</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">[</span><span class="n">top_depth</span><span class="p">,</span> <span class="n">base_depth</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="c1"># for iterables of images (or paths) and depth range pairs</span>
+<span class="n">column</span> <span class="o">=</span> <span class="n">segmenter</span><span class="o">.</span><span class="n">segment_all</span><span class="p">(</span><span class="n">imgs</span><span class="p">,</span> <span class="n">depth_ranges</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">class_names</span></code> should correspond to those in the dataset on which the model was trained, and <code class="docutils literal notranslate"><span class="pre">layout_params</span></code> are explained in detail in the <a class="reference internal" href="layout_parameters.html#layout-parameters"><span class="std std-ref">Layout Parameters</span></a> documentation.</p>
+</div>
+<div class="section" id="the-corecolumn-class">
+<h2>The <code class="docutils literal notranslate"><span class="pre">CoreColumn</span></code> Class<a class="headerlink" href="#the-corecolumn-class" title="Permalink to this headline">¶</a></h2>
+<p>This object is a container for depth-registered image data. Columns can be added, sliced, plotted, iterated over in chunks, saved, and loaded (in either single-file <code class="docutils literal notranslate"><span class="pre">.pkl</span></code> format or multi-file <code class="docutils literal notranslate"><span class="pre">.npy</span></code> format).</p>
+<p>For a demonstration of the <code class="docutils literal notranslate"><span class="pre">CoreColumn</span></code> API, see: <a class="reference external" href="https://github.com/rgmyr/corebreakout/blob/master/notebooks/column_demo.ipynb">notebooks/column_demo.py</a></p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Usage Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="creating_datasets.html">Creating <code class="docutils literal notranslate"><span class="pre">Datasets</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#using-labelme">Using <code class="docutils literal notranslate"><span class="pre">labelme</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#inspect-our-annotations">Inspect Our Annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#how-to-name-things">How to Name Things</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#removing-imagedata">Removing <code class="docutils literal notranslate"><span class="pre">imageData</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#summary-of-guidelines">Summary of Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#corebreakout-datasets-polygondataset"><code class="docutils literal notranslate"><span class="pre">corebreakout.datasets.PolygonDataset</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_datasets.html#subclassing-mrcnn-utils-dataset">Subclassing <code class="docutils literal notranslate"><span class="pre">mrcnn.utils.Dataset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model_building.html">Building Mask R-CNN Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="model_building.html#mrcnn-model-configuration"><code class="docutils literal notranslate"><span class="pre">mrcnn</span></code> Model Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_building.html#model-training">Model Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_building.html#model-selection">Model Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_building.html#using-a-model">Using a Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="layout_parameters.html">Layout Parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="layout_parameters.html#order-and-orientation"><code class="docutils literal notranslate"><span class="pre">order</span></code> and <code class="docutils literal notranslate"><span class="pre">orientation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout_parameters.html#col-height"><code class="docutils literal notranslate"><span class="pre">col_height</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout_parameters.html#col-class"><code class="docutils literal notranslate"><span class="pre">col_class</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout_parameters.html#endpts"><code class="docutils literal notranslate"><span class="pre">endpts</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scripts_reference.html">Scripts Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scripts_reference.html#train-mrcnn-model-py"><code class="docutils literal notranslate"><span class="pre">train_mrcnn_model.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts_reference.html#get-ocr-depths-py"><code class="docutils literal notranslate"><span class="pre">get_ocr_depths.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts_reference.html#process-directory-py"><code class="docutils literal notranslate"><span class="pre">process_directory.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts_reference.html#prune-imagedata-py"><code class="docutils literal notranslate"><span class="pre">prune_imageData.py</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="creating_datasets.html" class="btn btn-neutral float-right" title="Creating Datasets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Ross Meyer, Thomas Martin, Zane Jobe
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
