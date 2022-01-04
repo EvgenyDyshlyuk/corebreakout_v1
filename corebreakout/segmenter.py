@@ -138,6 +138,7 @@ class CoreSegmenter:
         # If `img` points to a file, read it. Otherwise assumed to be valid image array.
         if isinstance(img, (str, Path)):
             print(f"Reading file: {img}")
+            img_name = img
             img = io.imread(img)
 
         # Set up expected number of columns and their top/base depths
@@ -162,10 +163,8 @@ class CoreSegmenter:
         # Check that number of columns matches expectation
         num_cols = col_masks.shape[-1]
         if num_cols != num_expected:
-            raise UserWarning(
-                f"Number of detected columns {num_cols} does not match \
-                             expectation of {num_expected}"
-            )
+            raise UserWarning(f"ERROR: {img_name} : columns detected: {num_cols}!={num_expected} ,expected")   
+
 
         # Convert 3D binary masks to 2D integer labels array
         col_labels = utils.masks_to_labels(col_masks)

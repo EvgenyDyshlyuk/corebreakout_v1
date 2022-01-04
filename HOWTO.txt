@@ -1,0 +1,22 @@
+git clone --recursive https://github.com/EvgenyDyshlyuk/corebreakout.git
+python -m venv env
+.\env\Scripts\activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+pip install -e ./Mask_RCNN
+pip install tensorflow-gpu==1.14
+pip install -U pytest
+
+if throwing an error (AttributeError: 'str' object has no attribute 'decode'):
+pip install 'h5py==2.10.0' --force-reinstall
+
+copy process_directory.py from scripts to main directory
+create test_folder in main directory containing test images and csv file depths.csv
+
+,    top,    bottom
+<filename1>, <top1>, <bottom1>
+...
+<filenameN>, <topN>, <bottomN>
+
+run using: 
+python process_directory.py ./tests/data/two_image_dataset --depth_csv dummy_depths.csv

@@ -1,0 +1,4 @@
+{
+    "python.terminal.activateEnvironment": true,
+    "notebook.output.textLineLimit": 40
+}
