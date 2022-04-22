@@ -18,6 +18,8 @@ from corebreakout import CoreColumn
 from corebreakout import defaults, utils, viz
 
 
+
+
 class CoreSegmenter:
     """Mask R-CNN model container for extracting ``CoreColumn``s from core images.
 
@@ -137,7 +139,7 @@ class CoreSegmenter:
 
         # If `img` points to a file, read it. Otherwise assumed to be valid image array.
         if isinstance(img, (str, Path)):
-            print(f"Reading file: {img}")
+            #print(f"Reading file: {img}")
             img_name = img
             img = io.imread(img)
 
@@ -162,7 +164,10 @@ class CoreSegmenter:
 
         # Check that number of columns matches expectation
         num_cols = col_masks.shape[-1]
-        if num_cols != num_expected:
+        if num_cols != num_expected:            
+            # import image_previewer
+            # print(depth_range[0], depth_range[1])
+            # image_previewer.preview_images(img_name)
             raise UserWarning(f"ERROR: {img_name} : columns detected: {num_cols}!={num_expected} ,expected")   
 
 
