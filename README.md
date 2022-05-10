@@ -113,3 +113,14 @@ $ pytest .
 
 - Model usage via the `CoreSegmenter` class can be verified by running `tests/notebooks/test_inference.ipynb` (requires saved model weights)
 - Plotting of `CoreColumn`s can be verified by running `tests/notebooks/test_plotting.ipynb`
+
+
+
+_________________________________________________________________________________________________________________________
+# My changes to the repository
+
+Changes to the 
+1. I created Scripts/process_directory_direct_run - this file is used to call process_directory functionality (the original process_directory.py is only used through command line interface)
+2. New file compare_my_results_to_corebreakout - this was used to compare the results for test dataset published by corebreakout with the results obtained using my process
+3. scrape_images_and_process_directory.py file can be used to directly scrape files (using bgs-scraper) and process well images files to columns
+4. experimental file columns_to_rgb - an experimental workflow for transforming the core column to rgb 
